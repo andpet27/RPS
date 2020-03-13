@@ -1,58 +1,65 @@
 from random import randint
 
-choice_player = int()
+playerCh = int()
 play = "yes"
-computerSc = int()
-playerSc = int()        
+computerSc = 0
+playerSc = 0        
 
 while play  == "yes":
         
-    choice_player = int(input("Choose:\n1) Rock \n2) Paper \n3) Scissors \n"))
-    while choice_player > 3:
-        choice_player = int(input("Choose:\n1) Rock \n2) Paper \n3) Scissors \n"))
+    playerCh = int(input("Choose:\n1) Rock \n2) Paper \n3) Scissors \n"))
+    while playerCh > 3:
+        playerCh = int(input("Choose:\n1) Rock \n2) Paper \n3) Scissors \n"))
 
-    choice_computer = randint(1, 3)
+    computerCh = randint(1, 3)
 
-    class logic:
-        
-        @staticmethod
-        def win(x):
-            print("You win")
-            return x + 1            
 
-        @staticmethod
-        def lose(y):
-            print("You lose")
-            return y + 1
-
-        @staticmethod
-        def game(a, b, x, y):
-            if a == b:
-                print("Draw")
-            if a == 1 and b == 2:
-                logic.win(x)
-            if a == 1 and b == 3:
-                logic.lose(y)
-            if a == 2 and b == 1:
-                logic.lose(y)
-            if a == 2 and b == 3:
-                logic.win(x)
-            if a == 3 and b == 1:
-                logic.win(y)
-            if a == 3 and b == 2:
-                logic.lose(y)
+    def win():
+        print("You win.")
+        global playerSc 
+        playerSc += 1
+        return playerSc
     
-            return x
-            return y
+    def lose():
+        print("You lose.")
+        global computerSc
+        computerSc += 1
+        return computerSc
 
-    score = logic()
-    playerSc = score.win(playerSc)
-    computerSc = score.lose(computerSc)
+    def rock(a):
+        if a == 1:
+            print("Draw.")
+        if a == 2:
+            lose()
+        if a == 3:
+            win()
     
-    game = logic()
-    game.game(choice_computer, choice_player, playerSc, computerSc)
+    def paper(a):
+        if a == 1:
+            win()
+        if a == 2:
+            print("Draw.")
+        if a == 3:
+            lose()
+    
+    def scissors(a):
+        if a == 1:
+            lose()
+        if a == 2:
+            win()
+        if a == 3:
+            print("Draw.")
 
-    print("You chose: %d \nComputer chose: %d" %(choice_player, choice_computer))
+    if computerCh == 1:
+        rock(playerCh)
+    if computerCh == 2:
+        paper(playerCh)
+    if computerCh == 3:
+        scissors(playerCh)       
+
+   
+
+    print("You chose: %d \nComputer chose: %d" %(playerCh, computerCh))
     print("Score: You: %d Computer: %d" %(playerSc, computerSc))
     
     play = input("Again (yes/no)?\n")    
