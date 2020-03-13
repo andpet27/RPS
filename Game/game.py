@@ -62,6 +62,6 @@ while play  == "yes":
     print("You chose: %d \nComputer chose: %d" %(playerCh, computerCh))
     print("Score: You: %d Computer: %d" %(playerSc, computerSc))
     
-    play = input("Again (yes/no)?\n")    
+    play = input("Play again (yes/no)?\n")
 
 print("Final score: You: %d Computer: %d. Goodbye" %(playerSc, computerSc))
