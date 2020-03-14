@@ -13,11 +13,13 @@ def callCanvasGame():
     canvasGame = Canvas(game, height=750, width=1250, bg="#4a4e54")
     game.resizable(False,False)
     
+    canvasGame.create_text(300, 100, fill="white", text="Score: ", anchor=S, font=("Helvetica", 50))
+
     canvasGame.pack()
     start.destroy()
 
 btnStart = Button(text="Play", font=("Helvetica", 30), command=callCanvasGame)
-btnStart.configure(width=16, height=1, activebackground="#4a4e54")
+btnStart.configure(width=16, height=1, activebackground="#a3a29d")
 btnStart_window = canvasStart.create_window(610,620, window=btnStart)
 
 canvasStart.pack()
