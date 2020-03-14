@@ -1,7 +1,6 @@
 from random import randint
 
 playerCh = int()
-computerCh = randint(1,3)
 computerSc = 0
 playerSc = 0        
 
