@@ -1,4 +1,5 @@
 from tkinter import * 
+from game import *
 
 start = Tk()
 start.title("Rock, Paper, Scissors")
@@ -13,7 +14,9 @@ def callCanvasGame():
     canvasGame = Canvas(game, height=750, width=1250, bg="#4a4e54")
     game.resizable(False,False)
     
-    canvasGame.create_text(300, 100, fill="white", text="Score: ", anchor=S, font=("Helvetica", 50))
+
+    canvasGame.create_text(600, 100, fill="white", text=("Score: Player %d - %d Computer" %(playerSc,computerSc)), anchor=S, font=("Helvetica", 40))
+
 
     canvasGame.pack()
     start.destroy()
