@@ -25,31 +25,23 @@ def callCanvasGame():
 
     computerCh = randint(1,3)
     
-    def choice(a):
+    def gameLogic(a):
         global playerCh
         playerCh = a
-        return playerCh    
-
-    btnRock = Button(text="Rock", font=("Helvetica", 10))
+        
+        
+    btnRock = Button(text="Rock", font=("Helvetica", 10), command=lambda:gameLogic(1))
     btnRock.configure(width=10, height=1, activebackground="#a3a29d")
     btnRock_window = canvasGame.create_window(400, 700, window=btnRock)    
 
-    btnPaper = Button(text="Paper", font=("Helvetica", 10))
+    btnPaper = Button(text="Paper", font=("Helvetica", 10), command=lambda:gameLogic(2))
     btnPaper.configure(width=10, height=1, activebackground="#a3a29d")
     btnPaper_window = canvasGame.create_window(600, 700, window=btnPaper)
 
-    btnScissors = Button(text="Scissors", font=("Helvetica", 10))
+    btnScissors = Button(text="Scissors", font=("Helvetica", 10), command=lambda:gameLogic(3))
     btnScissors.configure(width=10, height=1, activebackground="#a3a29d")
     btnScissors_window = canvasGame.create_window(800, 700, window=btnScissors)
 
-    def gameLogic(a):
-        if a == 1:
-            rock(playerCh)
-        if a == 2:
-            paper(playerCh)
-        if a == 3:
-            scissors(playerCh)
-    
     canvasGame.pack()
     game.mainloop()
         
