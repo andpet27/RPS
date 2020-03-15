@@ -1,10 +1,11 @@
 from tkinter import * 
 from game import *
+from random import randint
 
 start = Tk()
 start.title("Rock, Paper, Scissors")
 
-play = True
+computerCh = int()
 
 canvasStart = Canvas(start, height=750, width=1250, bg="#4a4e54")
 start.resizable(False, False)
@@ -23,28 +24,34 @@ def callCanvasGame():
     canvasGame.create_text(600, 100, fill="white", text=score, anchor=S, font=("Helvetica", 40))
 
     computerCh = randint(1,3)
-
-    def choise(a):
+    
+    def choice(a):
+        global playerCh
         playerCh = a
-        return playerCh
-        canvasGame.update_idletasks()
+        return playerCh    
 
-    btnRock = Button(text="Rock", font=("Helvetica", 10), command=choise(1))
+    btnRock = Button(text="Rock", font=("Helvetica", 10))
     btnRock.configure(width=10, height=1, activebackground="#a3a29d")
     btnRock_window = canvasGame.create_window(400, 700, window=btnRock)    
 
-    btnPaper = Button(text="Paper", font=("Helvetica", 10), command=choise(2))
+    btnPaper = Button(text="Paper", font=("Helvetica", 10))
     btnPaper.configure(width=10, height=1, activebackground="#a3a29d")
     btnPaper_window = canvasGame.create_window(600, 700, window=btnPaper)
 
-    btnScissors = Button(text="Scissors", font=("Helvetica", 10), command=choise(3))
+    btnScissors = Button(text="Scissors", font=("Helvetica", 10))
     btnScissors.configure(width=10, height=1, activebackground="#a3a29d")
     btnScissors_window = canvasGame.create_window(800, 700, window=btnScissors)
 
-    filler= "%d, %d" %(playerCh,computerCh)
-    canvasGame.create_text(600, 300, fill="white", text=filler, anchor=S, font=("Helvetica", 40))
-
+    def gameLogic(a):
+        if a == 1:
+            rock(playerCh)
+        if a == 2:
+            paper(playerCh)
+        if a == 3:
+            scissors(playerCh)
+    
     canvasGame.pack()
+    game.mainloop()
         
 
 btnStart = Button(text="Play", font=("Helvetica", 30), command=callCanvasGame)
