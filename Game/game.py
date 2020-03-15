@@ -39,3 +39,18 @@ def scissors(a):
         win()
     if a == 3:
         print("Draw.")
+
+def gameLogic(a):
+        global playerCh
+        playerCh = a
+        
+        computerCh = randint(1,3)
+
+        if computerCh == 1:
+            rock(playerCh)
+        if computerCh == 2:
+            paper(playerCh)
+        if computerCh == 3:
+            scissors(playerCh)  
+        
+        print(playerSc, computerSc)
