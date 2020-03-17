@@ -17,7 +17,7 @@ def lose():
     global computerSc
     computerSc += 1
     return computerSc
-
+    
 def rock(a):
     if a == 1:
         #print("Draw.")
@@ -58,4 +58,5 @@ def gameLogic(a):
         scissors(playerCh)
 
     gameLogic.score = "Score: Player %d - %d Computer" %(playerSc, computerSc)
+    
     return gameLogic.score

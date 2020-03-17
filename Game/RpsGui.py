@@ -17,20 +17,43 @@ def callCanvasGame():
     game.resizable(False,False)
     scoreTxt = canvasGame.create_text(600, 100, fill="white", text=("Score: Player %d - %d Computer" %(playerSc, computerSc)), anchor=S, font=("Helvetica", 40))
 
-    btnRock = Button(text="Rock", font=("Helvetica", 10), command=lambda:[gameLogic(1), scoreUpdate()])
-    btnRock.configure(width=10, height=1, activebackground="#a3a29d")
-    btnRock_window = canvasGame.create_window(400, 650, window=btnRock)    
+    imgRPS = PhotoImage(file='imgs/RPS.PNG')
+    logoRPS = imgRPS.subsample(1, 1)
+    computerChoice = Label(canvasGame, image=logoRPS, bg="#4a4e54")
+    computerChoice.pack()
+    canvasGame.create_window(600, 305, window=computerChoice)
+    winLoseTxt = canvasGame.create_text(600, 540, fill="white", text="text", anchor=S, font=("Helvetica", 25))
 
-    btnPaper = Button(text="Paper", font=("Helvetica", 10), command=lambda:[gameLogic(2), scoreUpdate()])
-    btnPaper.configure(width=10, height=1, activebackground="#a3a29d")
-    btnPaper_window = canvasGame.create_window(600, 650, window=btnPaper)
+    imgRock = PhotoImage(file='imgs/Rock.png')
+    logoRock = imgRock.subsample(2, 2)
+    btnRock = Button(command=lambda:[gameLogic(1), scoreUpdate()])
+    btnRock.configure(image=logoRock, width=100, height=100, activebackground="#a3a29d")
+    btnRock_window = canvasGame.create_window(400, 610, window=btnRock)    
 
-    btnScissors = Button(text="Scissors", font=("Helvetica", 10), command=lambda:[gameLogic(3), scoreUpdate()])
-    btnScissors.configure(width=10, height=1, activebackground="#a3a29d")
-    btnScissors_window = canvasGame.create_window(800, 650, window=btnScissors)
+    imgPaper = PhotoImage(file='imgs/Paper.png')
+    logoPaper = imgPaper.subsample(2, 2)
+    btnPaper = Button(command=lambda:[gameLogic(2), scoreUpdate()])
+    btnPaper.configure(image=logoPaper, width=100, height=100, activebackground="#a3a29d")
+    btnPaper_window = canvasGame.create_window(600, 610, window=btnPaper)
+
+    imgScissors = PhotoImage(file='imgs/Scissors.png')
+    logoScissors = imgScissors.subsample(2, 2)
+    btnScissors = Button(command=lambda:[gameLogic(3), scoreUpdate()])
+    btnScissors.configure(image=logoScissors, width=100, height=100, activebackground="#a3a29d")
+    btnScissors_window = canvasGame.create_window(800, 610, window=btnScissors)
 
     def scoreUpdate():
         canvasGame.itemconfigure(scoreTxt, text=gameLogic.score)
+
+    """def computerChImg(a, b):
+
+        if a == 1:
+            canvasGame.itemconfigure(computerChoice, image= b)
+        if a == 2:
+            canvasGame.itemconfigure(computerChoice, image=b)
+        if a == 3:
+            canvasGame.itemconfigure(computerChoice, image=b)"""  #ne dela
+            
 
     canvasGame.pack()
     game.mainloop()
