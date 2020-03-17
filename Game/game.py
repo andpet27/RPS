@@ -7,20 +7,21 @@ playerSc = 0
 
 
 def win():
-    print("You win.")
+    #print("You win.")
     global playerSc 
     playerSc += 1
     return playerSc
     
 def lose():
-    print("You lose.")
+    #print("You lose.")
     global computerSc
     computerSc += 1
     return computerSc
 
 def rock(a):
     if a == 1:
-        print("Draw.")
+        #print("Draw.")
+        pass
     if a == 2:
         lose()
     if a == 3:
@@ -30,7 +31,8 @@ def paper(a):
     if a == 1:
         win()
     if a == 2:
-        print("Draw.")
+        #print("Draw.")
+        pass
     if a == 3:
         lose()
     
@@ -40,10 +42,10 @@ def scissors(a):
     if a == 2:
         win()
     if a == 3:
-        print("Draw.")
+        #print("Draw.")
+        pass
 
 def gameLogic(a):
-
     playerCh = a
         
     computerCh = randint(1,3)
@@ -55,5 +57,5 @@ def gameLogic(a):
     if computerCh == 3:
         scissors(playerCh)
 
-    score = "Player %d - %d Computer" %(playerSc, computerSc)
-    print(score)
+    gameLogic.score = "Score: Player %d - %d Computer" %(playerSc, computerSc)
+    return gameLogic.score
