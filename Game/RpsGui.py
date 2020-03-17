@@ -1,5 +1,5 @@
 from tkinter import * 
-from game import*
+from game import *
 from random import randint
 
 start = Tk()
@@ -18,7 +18,7 @@ def callCanvasGame():
     canvasGame = Canvas(game, height=700, width=1250, bg="#4a4e54")
     game.resizable(False,False)
 
-    btnRock = Button(text="Rock", font=("Helvetica", 10), command=lambda:[gameLogic(1), scoreUpdate(score)])
+    btnRock = Button(text="Rock", font=("Helvetica", 10), command=lambda:[gameLogic(1), scoreUpdate("gameLogic.score")])
     btnRock.configure(width=10, height=1, activebackground="#a3a29d")
     btnRock_window = canvasGame.create_window(400, 650, window=btnRock)    
 
@@ -30,18 +30,15 @@ def callCanvasGame():
     btnScissors.configure(width=10, height=1, activebackground="#a3a29d")
     btnScissors_window = canvasGame.create_window(800, 650, window=btnScissors)
 
-    """score = "Score: Player %d - %d Computer" %(playerSc,computerSc)
-    canvasGame.create_text(600, 100, fill="white", text=score, anchor=S, font=("Helvetica", 40))"""
-    
     def scoreUpdate(txt):
-        canvasGame.create_text(600, 100, fill="white", text=txt, anchor=S, font=("Helvetica", 40))
+        canvasGame.delete("score text")
+        canvasGame.create_text(600, 100, fill="white", text=txt, anchor=S, font=("Helvetica", 40), tag="score text")
         canvasGame.pack()
-    
 
-    
     canvasGame.pack()
     game.mainloop()
-        
+
+       
 btnStart = Button(text="Play", font=("Helvetica", 30), command=callCanvasGame)
 btnStart.configure(width=16, height=1, activebackground="#a3a29d")
 btnStart_window = canvasStart.create_window(610, 620, window=btnStart)

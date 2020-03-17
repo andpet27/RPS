@@ -2,10 +2,9 @@ from tkinter import *
 from random import randint
 from RpsGui import *
 
-playerCh = int()
 computerSc = 0
 playerSc = 0
-score = str()
+
 
 def win():
     print("You win.")
@@ -43,27 +42,18 @@ def scissors(a):
     if a == 3:
         print("Draw.")
 
-"""def scoreUpdate(txt):
-    global canvasGame
-    canvasGame.create_text(600, 100, fill="white", text=txt, anchor=S, font=("Helvetica", 40))
-    canvasGame.pack()"""
-
-
 def gameLogic(a):
-        global playerCh
-        playerCh = a
-        
-        computerCh = randint(1,3)
 
-        if computerCh == 1:
-            rock(playerCh)
-        if computerCh == 2:
-            paper(playerCh)
-        if computerCh == 3:
-            scissors(playerCh)  
-
-        score = "Player %d - %d Computer" %(playerSc, computerSc)
-        print(score)
-        return score
-               
+    playerCh = a
         
+    computerCh = randint(1,3)
+
+    if computerCh == 1:
+        rock(playerCh)
+    if computerCh == 2:
+        paper(playerCh)
+    if computerCh == 3:
+        scissors(playerCh)
+
+    score = "Player %d - %d Computer" %(playerSc, computerSc)
+    print(score)
