@@ -6,17 +6,19 @@ computerSc = 0
 playerSc = 0
 
 
+
 def win():
     #print("You win.")
     global computerSc 
     computerSc += 1
-    return computerSc    
+    return computerSc
     
 def lose():
     #print("You lose.")
     global playerSc
     playerSc += 1
     return playerSc
+    
     
 def rock(a):
     if a == 1:
@@ -56,7 +58,6 @@ def gameLogic(a):
         paper(playerCh)
     if gameLogic.computerCh == 3:
         scissors(playerCh)
-
-    gameLogic.score = "Score: Player %d - %d Computer" %(playerSc, computerSc)
     
+    gameLogic.score = "Score: Player %d - %d Computer" %(playerSc, computerSc)
     return gameLogic.score

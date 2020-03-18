@@ -13,51 +13,49 @@ def callCanvasGame():
     start.destroy()
     game = Tk()
     game.title("Rock, Paper, Scissors")
-    canvasGame = Canvas(game, height=700, width=1250, bg="#4a4e54")
+    callCanvasGame.canvasGame = Canvas(game, height=700, width=1250, bg="#4a4e54")
     game.resizable(False,False)
-    scoreTxt = canvasGame.create_text(600, 100, fill="white", text=("Score: Player %d - %d Computer" %(playerSc, computerSc)), anchor=S, font=("Helvetica", 40))
+    scoreTxt = callCanvasGame.canvasGame.create_text(600, 100, fill="white", text=("Score: Player %d - %d Computer" %(playerSc, computerSc)), anchor=S, font=("Helvetica", 40))
 
     imgRPS = PhotoImage(file='imgs/RPS.PNG')
     logoRPS = imgRPS.subsample(1, 1)
-    computerChoice = Label(canvasGame, image=logoRPS, bg="#4a4e54")
-    #computerChoice.pack()
-    canvasGame.create_window(600, 305, window=computerChoice)
-    callCanvasGame.winLoseTxt = canvasGame.create_text(600, 540, fill="white", text="text", anchor=S, font=("Helvetica", 25))
+    computerChoice = Label(callCanvasGame.canvasGame, image=logoRPS, bg="#4a4e54")
+    callCanvasGame.canvasGame.create_window(600, 305, window=computerChoice)
+    callCanvasGame.winLoseTxt = callCanvasGame.canvasGame.create_text(600, 540, fill="white", text="text", anchor=S, font=("Helvetica", 25))
 
     imgRock = PhotoImage(file='imgs/Rock.png')
     logoRock = imgRock.subsample(2, 2)
-    btnRock = Button(command=lambda:[gameLogic(1), scoreUpdate(), computerChImg(imgRock, imgPaper, imgScissors)])
+    btnRock = Button(command=lambda:[gameLogic(1), scoreUpdate(), computerChImg()])
     btnRock.configure(image=logoRock, width=100, height=100, activebackground="#a3a29d")
-    btnRock_window = canvasGame.create_window(400, 610, window=btnRock)    
+    btnRock_window = callCanvasGame.canvasGame.create_window(400, 610, window=btnRock)    
 
     imgPaper = PhotoImage(file='imgs/Paper.png')
     logoPaper = imgPaper.subsample(2, 2)
-    btnPaper = Button(command=lambda:[gameLogic(2), scoreUpdate(), computerChImg(imgRock, imgPaper, imgScissors)])
+    btnPaper = Button(command=lambda:[gameLogic(2), scoreUpdate(), computerChImg()])
     btnPaper.configure(image=logoPaper, width=100, height=100, activebackground="#a3a29d")
-    btnPaper_window = canvasGame.create_window(600, 610, window=btnPaper)
+    btnPaper_window = callCanvasGame.canvasGame.create_window(600, 610, window=btnPaper)
 
     imgScissors = PhotoImage(file='imgs/Scissors.png')
     logoScissors = imgScissors.subsample(2, 2)
-    btnScissors = Button(command=lambda:[gameLogic(3), scoreUpdate(), computerChImg(imgRock, imgPaper, imgScissors)])
+    btnScissors = Button(command=lambda:[gameLogic(3), scoreUpdate(), computerChImg()])
     btnScissors.configure(image=logoScissors, width=100, height=100, activebackground="#a3a29d")
-    btnScissors_window = canvasGame.create_window(800, 610, window=btnScissors)
+    btnScissors_window = callCanvasGame.canvasGame.create_window(800, 610, window=btnScissors)
 
     def scoreUpdate():
-        canvasGame.itemconfigure(scoreTxt, text=gameLogic.score)
+        callCanvasGame.canvasGame.itemconfigure(scoreTxt, text=gameLogic.score)
 
-    def computerChImg(R, P, S):
+    def computerChImg():
         if gameLogic.computerCh == 1:
-            computerChoice.configure(image=R)
+            computerChoice.configure(image=imgRock)
             computerChoice.update()
         if gameLogic.computerCh == 2:
-            computerChoice.configure(image=P)
+            computerChoice.configure(image=imgPaper)
             computerChoice.update()
         if gameLogic.computerCh == 3:
-            computerChoice.configure(image=S)
+            computerChoice.configure(image=imgScissors)
             computerChoice.update()
-            
-
-    canvasGame.pack()
+    
+    callCanvasGame.canvasGame.pack()
     game.mainloop()
 
        
