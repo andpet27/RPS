@@ -4,20 +4,23 @@ from RpsGui import *
 
 computerSc = 0
 playerSc = 0
-
+outcome = 0
 
 
 def win():
     #print("You win.")
     global computerSc 
     computerSc += 1
-    return computerSc
+    global outcome
+    outcome = 1
+    
     
 def lose():
     #print("You lose.")
     global playerSc
     playerSc += 1
-    return playerSc
+    global outcome
+    outcome = 2
     
     
 def rock(a):
@@ -60,4 +63,9 @@ def gameLogic(a):
         scissors(playerCh)
     
     gameLogic.score = "Score: Player %d - %d Computer" %(playerSc, computerSc)
+    
+    global outcome
+    gameLogic.outcome = outcome
+    outcome = 0
+
     return gameLogic.score
