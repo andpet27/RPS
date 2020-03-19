@@ -13,36 +13,41 @@ def callCanvasGame():
     start.destroy()
     game = Tk()
     game.title("Rock, Paper, Scissors")
-    callCanvasGame.canvasGame = Canvas(game, height=700, width=1250, bg="#4a4e54")
+    canvasGame = Canvas(game, height=700, width=1250, bg="#4a4e54")
     game.resizable(False,False)
-    scoreTxt = callCanvasGame.canvasGame.create_text(600, 100, fill="white", text=("Score: Player %d - %d Computer" %(playerSc, computerSc)), anchor=S, font=("Helvetica", 40))
+    scoreTxt = canvasGame.create_text(600, 100, fill="white", text=("Score: Player %d - %d Computer" %(playerSc, computerSc)), anchor=S, font=("Helvetica", 40))
 
     imgRPS = PhotoImage(file='imgs/RPS.PNG')
     logoRPS = imgRPS.subsample(1, 1)
-    computerChoice = Label(callCanvasGame.canvasGame, image=logoRPS, bg="#4a4e54")
-    callCanvasGame.canvasGame.create_window(600, 305, window=computerChoice)
-    winLoseTxt = callCanvasGame.canvasGame.create_text(600, 540, fill="white", text="", anchor=S, font=("Helvetica", 25))
+    computerChoice = Label(canvasGame, image=logoRPS, bg="#4a4e54")
+    canvasGame.create_window(600, 305, window=computerChoice)
+    winLoseTxt = canvasGame.create_text(600, 540, fill="white", text="", anchor=S, font=("Helvetica", 25))
 
     imgRock = PhotoImage(file='imgs/Rock.png')
     logoRock = imgRock.subsample(2, 2)
     btnRock = Button(command=lambda:[gameLogic(1), scoreUpdate(), computerChImg(), outcome()])
     btnRock.configure(image=logoRock, width=100, height=100, activebackground="#a3a29d")
-    btnRock_window = callCanvasGame.canvasGame.create_window(400, 610, window=btnRock)    
+    btnRock_window = canvasGame.create_window(400, 610, window=btnRock)    
 
     imgPaper = PhotoImage(file='imgs/Paper.png')
     logoPaper = imgPaper.subsample(2, 2)
     btnPaper = Button(command=lambda:[gameLogic(2), scoreUpdate(), computerChImg(), outcome()])
     btnPaper.configure(image=logoPaper, width=100, height=100, activebackground="#a3a29d")
-    btnPaper_window = callCanvasGame.canvasGame.create_window(600, 610, window=btnPaper)
+    btnPaper_window = canvasGame.create_window(600, 610, window=btnPaper)
 
     imgScissors = PhotoImage(file='imgs/Scissors.png')
     logoScissors = imgScissors.subsample(2, 2)
     btnScissors = Button(command=lambda:[gameLogic(3), scoreUpdate(), computerChImg(), outcome()])
     btnScissors.configure(image=logoScissors, width=100, height=100, activebackground="#a3a29d")
-    btnScissors_window = callCanvasGame.canvasGame.create_window(800, 610, window=btnScissors)
+    btnScissors_window = canvasGame.create_window(800, 610, window=btnScissors)
+
+    quitBtn = Button(text="Quit", font=("Helvetica", 30), command=lambda:quitGame())
+    quitBtn.configure(width=7, height=1, activebackground="#a3a29d")
+    quitBtn_window = canvasGame.create_window(1100, 610, window=quitBtn)
+
 
     def scoreUpdate():
-        callCanvasGame.canvasGame.itemconfigure(scoreTxt, text=gameLogic.score)
+        canvasGame.itemconfigure(scoreTxt, text=gameLogic.score)
 
     def computerChImg():
         if gameLogic.computerCh == 1:
@@ -58,13 +63,29 @@ def callCanvasGame():
     def outcome():
         
         if gameLogic.outcome == 1:
-            callCanvasGame.canvasGame.itemconfigure(winLoseTxt, text="You lose.")
+            canvasGame.itemconfigure(winLoseTxt, text="You lose.")
         if gameLogic.outcome == 2:
-            callCanvasGame.canvasGame.itemconfigure(winLoseTxt, text="You win.")
+            canvasGame.itemconfigure(winLoseTxt, text="You win.")
         if gameLogic.outcome == 0:
-            callCanvasGame.canvasGame.itemconfigure(winLoseTxt, text="Draw.")
-    
-    callCanvasGame.canvasGame.pack()
+            canvasGame.itemconfigure(winLoseTxt, text="Draw.")
+
+    def quitGame():
+        game.destroy()
+        end = Tk()
+        end.title("Rock, Paper, Scissors")
+
+        endScreen = Canvas(end, height=700, width=1250, bg="#4a4e54")
+        end.resizable(False, False)
+        
+        if hasattr(gameLogic.score, None): #ne dela SE
+                end.destroy()
+        else:
+            endScreen.create_text(650, 80, fill="white", text=gameLogic.score, anchor=N, font=("Helvetica", 50))
+        
+        endScreen.pack()
+        end.loop()
+
+    canvasGame.pack()
     game.mainloop()
 
        
