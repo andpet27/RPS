@@ -62,7 +62,7 @@ def callCanvasGame():
         if gameLogic.outcome == 2:
             callCanvasGame.canvasGame.itemconfigure(winLoseTxt, text="You win.")
         if gameLogic.outcome == 0:
-            callCanvasGame.canvasGame.itemconfigure(winLoseTxt, text="Tie.")
+            callCanvasGame.canvasGame.itemconfigure(winLoseTxt, text="Draw.")
     
     callCanvasGame.canvasGame.pack()
     game.mainloop()
