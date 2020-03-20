@@ -26,19 +26,19 @@ def callCanvasGame():
 
     imgRock = PhotoImage(file='imgs/Rock.png')
     logoRock = imgRock.subsample(2, 2)
-    btnRock = Button(command=lambda:[gameLogic(1), scoreUpdate(), computerChImg(), outcome()])
+    btnRock = Button(command=lambda:[gameLogic(1), computerChImg(), scoreUpdate(), outcome()])
     btnRock.configure(image=logoRock, width=100, height=100, activebackground="#a3a29d")
     btnRock_window = canvasGame.create_window(400, 610, window=btnRock)    
 
     imgPaper = PhotoImage(file='imgs/Paper.png')
     logoPaper = imgPaper.subsample(2, 2)
-    btnPaper = Button(command=lambda:[gameLogic(2), scoreUpdate(), computerChImg(), outcome()])
+    btnPaper = Button(command=lambda:[gameLogic(2), computerChImg(), scoreUpdate(), outcome()])
     btnPaper.configure(image=logoPaper, width=100, height=100, activebackground="#a3a29d")
     btnPaper_window = canvasGame.create_window(600, 610, window=btnPaper)
 
     imgScissors = PhotoImage(file='imgs/Scissors.png')
     logoScissors = imgScissors.subsample(2, 2)
-    btnScissors = Button(command=lambda:[gameLogic(3), scoreUpdate(), computerChImg(), outcome()])
+    btnScissors = Button(command=lambda:[gameLogic(3), computerChImg(), scoreUpdate(), outcome()])
     btnScissors.configure(image=logoScissors, width=100, height=100, activebackground="#a3a29d")
     btnScissors_window = canvasGame.create_window(800, 610, window=btnScissors)
 
@@ -53,7 +53,7 @@ def callCanvasGame():
     def computerChImg():
         computerChoice.configure(image=imgRPS)
         computerChoice.update()
-        time.sleep(0.5)
+        time.sleep(1)
         if gameLogic.computerCh == 1:
             computerChoice.configure(image=imgRock)
             computerChoice.update()
@@ -64,8 +64,7 @@ def callCanvasGame():
             computerChoice.configure(image=imgScissors)
             computerChoice.update()
     
-    def outcome():
-        
+    def outcome():        
         if gameLogic.outcome == 1:
             canvasGame.itemconfigure(winLoseTxt, text="You lose.")
         if gameLogic.outcome == 2:
@@ -81,7 +80,7 @@ def callCanvasGame():
         endScreen = Canvas(end, height=700, width=1250, bg="#4a4e54")
         end.resizable(False, False)
         
-        if hasattr(gameLogic.score, None): #ne dela SE
+        if hasattr(gameLogic.score, ""): #ne dela SE
                 end.destroy()
         else:
             endScreen.create_text(650, 80, fill="white", text=gameLogic.score, anchor=N, font=("Helvetica", 50))

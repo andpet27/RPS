@@ -6,7 +6,6 @@ computerSc = 0
 playerSc = 0
 outcome = 0
 
-
 def win():
     #print("You win.")
     global computerSc 
