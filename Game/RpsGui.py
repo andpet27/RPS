@@ -1,6 +1,7 @@
 from tkinter import * 
 from game import *
 from random import randint
+import time
 
 start = Tk()
 start.title("Rock, Paper, Scissors")
@@ -50,6 +51,9 @@ def callCanvasGame():
         canvasGame.itemconfigure(scoreTxt, text=gameLogic.score)
 
     def computerChImg():
+        computerChoice.configure(image=imgRPS)
+        computerChoice.update()
+        time.sleep(0.5)
         if gameLogic.computerCh == 1:
             computerChoice.configure(image=imgRock)
             computerChoice.update()
