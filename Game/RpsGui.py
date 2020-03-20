@@ -18,8 +18,6 @@ def callCanvasGame():
     game.resizable(False,False)
     scoreTxt = canvasGame.create_text(600, 100, fill="white", text=("Score: Player %d - %d Computer" %(playerSc, computerSc)), anchor=S, font=("Helvetica", 40))
 
-    gameLogic.play = False
-
     imgRPS = PhotoImage(file='imgs/RPS.PNG')
     logoRPS = imgRPS.subsample(1, 1)
     computerChoice = Label(canvasGame, image=logoRPS, bg="#4a4e54")
@@ -82,28 +80,19 @@ def callCanvasGame():
         endScreen = Canvas(end, height=700, width=1250, bg="#4a4e54")
         end.resizable(False, False)
         
-        endScore = None
-
-        if gameLogic.play == True:
-            endScore = "Final %s" %gameLogic.score
-            endScreen.create_text(650, 200, fill="white", text=endScore, anchor=N, font=("Helvetica", 50))
-            
-            btnClose = Button(text="Close", font=("Helvetica", 30), command=lambda:end.destroy())
-            btnClose_window = endScreen.create_window(610, 620, window=btnClose)
-
-            endScreen.pack()            
+        if hasattr(gameLogic.score, ""): #ne dela SE
+                end.destroy()
+        else:
+            endScreen.create_text(650, 80, fill="white", text=gameLogic.score, anchor=N, font=("Helvetica", 50))
         
-        if endScore == None:
-            end.destroy()
-            end.quit()
-        
-        
-        end.mainloop()
+        endScreen.pack()
+        end.loop()
 
     canvasGame.pack()
     game.mainloop()
 
-btnStart = Button(text="Play", font=("Helvetica", 30), command=lambda:callCanvasGame())
+       
+btnStart = Button(text="Play", font=("Helvetica", 30), command=callCanvasGame)
 btnStart.configure(width=16, height=1, activebackground="#a3a29d")
 btnStart_window = canvasStart.create_window(610, 620, window=btnStart)
 

@@ -62,7 +62,6 @@ def gameLogic(a):
         scissors(playerCh)
     
     gameLogic.score = "Score: Player %d - %d Computer" %(playerSc, computerSc)
-    gameLogic.play = True
     
     global outcome
     gameLogic.outcome = outcome
