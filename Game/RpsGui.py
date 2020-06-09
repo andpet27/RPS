@@ -53,7 +53,7 @@ def callCanvasGame():
     def computerChImg():
         computerChoice.configure(image=imgRPS)
         computerChoice.update()
-        time.sleep(1)
+        time.sleep(0.75)
         if gameLogic.computerCh == 1:
             computerChoice.configure(image=imgRock)
             computerChoice.update()
